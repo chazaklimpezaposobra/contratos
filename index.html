@@ -60,6 +60,12 @@ textarea{min-height:90px;resize:vertical}
 .preview iframe{flex:1;border:0;width:100%;background:#525659}
 .status{font-weight:400;color:var(--muted);font-size:12px}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
+.numero-wrap{display:flex;flex-direction:column;gap:5px}
+.numero-wrap>label{font-size:13px;font-weight:600}
+.numero-row{display:flex;gap:8px}
+[hidden]{display:none!important}
+.numero-row input[readonly]{background:var(--soft)}
+.numero-wrap .hint{font-size:12px}
 </style>
 </head>
 <body>
@@ -82,7 +88,20 @@ textarea{min-height:90px;resize:vertical}
     <fieldset>
       <legend>Contrato</legend>
       <div class="grid">
-        <label class="c3">Número do contrato<input name="numero" id="numero" readonly style="background:var(--soft)"><span class="hint">Automático: CHZ + dia, mês e ano de hoje</span></label>
+        <div class="c3 numero-wrap">
+          <label for="numero">Número do contrato</label>
+          <div class="numero-row">
+            <input name="numero" id="numero" readonly>
+            <input type="hidden" name="numeroManual" id="numeroManual" value="">
+            <button type="button" class="icon-btn" id="btn-editnum" aria-label="Editar número do contrato" title="Editar número">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4z"></path><path d="m13.5 6.5 4 4"></path></svg>
+            </button>
+            <button type="button" class="icon-btn" id="btn-autonum" aria-label="Voltar ao número automático" title="Voltar ao automático" hidden>
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5"></path><path d="M4 4v4.5h4.5"></path></svg>
+            </button>
+          </div>
+          <span class="hint" id="numHint">Automático: CHZ + dia, mês e ano de hoje</span>
+        </div>
         <label class="c3">Data da assinatura<input type="date" name="assData" id="assData"></label>
         <label class="c3">Cidade da assinatura<input name="assCidade" id="assCidade"></label>
         <label class="c3 chip" style="align-self:end"><input type="checkbox" name="testemunhas"> Incluir 2 testemunhas</label>

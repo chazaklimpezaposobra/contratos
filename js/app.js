@@ -124,10 +124,22 @@
   function hojeISO() { var t = new Date(); t.setMinutes(t.getMinutes() - t.getTimezoneOffset()); return t.toISOString().slice(0, 10); }
   // CHZ + dia, mês e ano do dia em que o contrato é feito. Ex.: CHZ-23112026
   function novoNumero() { var t = new Date(), z = function (n) { return String(n).padStart(2, '0'); }; return 'CHZ-' + z(t.getDate()) + z(t.getMonth() + 1) + t.getFullYear(); }
+  // ---------- número do contrato: automático ou editado com o lápis ----------
+  function numeroModo(manual) {
+    var n = $('#numero');
+    $('#numeroManual').value = manual ? '1' : '';
+    n.readOnly = !manual;
+    if (!manual || !n.value.trim()) n.value = novoNumero();
+    $('#btn-editnum').hidden = manual; $('#btn-autonum').hidden = !manual;
+    $('#numHint').textContent = manual ? 'Editado à mão — a seta volta para o automático' : 'Automático: CHZ + dia, mês e ano de hoje';
+  }
+  $('#btn-editnum').addEventListener('click', function () { numeroModo(true); var n = $('#numero'); n.focus(); n.setSelectionRange(n.value.length, n.value.length); salvar(); });
+  $('#btn-autonum').addEventListener('click', function () { numeroModo(false); agenda(); $('#btn-editnum').focus(); });
+
   function padrao() {
     form.reset(); $('#escopo').innerHTML = '';
     window.ESCOPO_PADRAO.forEach(addAmb);
-    $('#numero').value = novoNumero(); $('#assData').value = hojeISO(); $('#assCidade').value = window.CHAZAK.cidadeUF;
+    numeroModo(false); $('#assData').value = hojeISO(); $('#assCidade').value = window.CHAZAK.cidadeUF;
     form.elements.uf.value = 'SP'; $('#outroWrap').hidden = true;
     $$('.invalid').forEach(function (el) { el.classList.remove('invalid'); });
   }
@@ -181,7 +193,8 @@
 
   // ---------- início ----------
   if (!restaurar()) padrao();
-  $('#numero').value = novoNumero();   // sempre o número do dia de hoje
+  // número automático, a menos que tenha sido editado à mão (lápis)
+  numeroModo($('#numeroManual').value === '1');
   atualizaValores();
   carregar().then(gerarPrevia).catch(function (e) { status.textContent = 'erro ao carregar fontes: ' + e.message; });
 })();
