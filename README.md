@@ -24,4 +24,7 @@ Preencha o formulário e baixe o contrato pronto em PDF.
 | Texto das cláusulas e layout do PDF | `js/contrato.js` |
 | Formulário | `index.html` e `js/app.js` |
 
+Ao mudar qualquer arquivo em `js/`, aumente o número `?v=` nos `<script>` do `index.html`
+para os navegadores baixarem a versão nova na hora.
+
 > O texto do contrato é um modelo. Vale uma revisão por um advogado antes do uso definitivo.
