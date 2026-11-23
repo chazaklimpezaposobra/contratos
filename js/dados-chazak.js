@@ -12,7 +12,6 @@ window.CHAZAK = {
   responsavel:  '[NOME DO RESPONSÁVEL]',
   telefone:     '(11) 93085-3352',
   email:        '',
-  site:         'chazaklimpezaposobra.github.io',
   foro:         'Jundiaí/SP'   // comarca do foro do contrato
 };
 

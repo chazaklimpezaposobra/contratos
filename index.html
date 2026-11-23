@@ -82,7 +82,7 @@ textarea{min-height:90px;resize:vertical}
     <fieldset>
       <legend>Contrato</legend>
       <div class="grid">
-        <label class="c3">Número do contrato<input name="numero" id="numero"></label>
+        <label class="c3">Número do contrato<input name="numero" id="numero" readonly style="background:var(--soft)"><span class="hint">Automático: CHZ + dia, mês e ano de hoje</span></label>
         <label class="c3">Data da assinatura<input type="date" name="assData" id="assData"></label>
         <label class="c3">Cidade da assinatura<input name="assCidade" id="assCidade"></label>
         <label class="c3 chip" style="align-self:end"><input type="checkbox" name="testemunhas"> Incluir 2 testemunhas</label>
@@ -102,7 +102,7 @@ textarea{min-height:90px;resize:vertical}
     <fieldset>
       <legend>Local do serviço</legend>
       <div class="grid">
-        <label class="c2">CEP<input name="cep" inputmode="numeric" data-mask="cep"></label>
+        <label class="c2">CEP<input name="cep" id="cep" inputmode="numeric" data-mask="cep"><span class="hint" id="cepStatus" aria-live="polite">Preenche o endereço sozinho</span></label>
         <label class="c4"><span>Rua / avenida <span class="req">*</span></span><input name="logradouro" data-req></label>
         <label class="c1">Número<input name="numeroEnd"></label>
         <label class="c2">Complemento<input name="complemento" placeholder="apto, bloco..."></label>

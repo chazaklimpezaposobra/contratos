@@ -8,6 +8,8 @@ Preencha o formulário e baixe o contrato pronto em PDF.
 ## Como funciona
 
 - Tudo roda no navegador. **Nenhum dado de cliente é enviado ou salvo neste repositório.**
+  A única consulta externa é o CEP, enviado ao ViaCEP (viacep.com.br) para preencher o endereço.
+- O número do contrato é automático: `CHZ-` + dia, mês e ano do dia em que é feito (ex.: `CHZ-23112026`).
 - O que você digita fica guardado só no navegador do aparelho (rascunho), até clicar em **Novo contrato**.
 - O PDF sai com o logo, os dados fixos da Chazak e as cláusulas, incluindo:
   - pagamento de **50% de adiantamento** na assinatura e **50% na finalização**;

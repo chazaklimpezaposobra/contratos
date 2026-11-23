@@ -58,6 +58,30 @@
   }
   $('#btn-amb').addEventListener('click', function () { var b = addAmb({ ambiente: 'Novo ambiente', ativo: true, itens: [] }); var i = $('input[type=text]', b); i.focus(); i.select(); });
 
+  // ---------- CEP → endereço (ViaCEP) ----------
+  var ultimoCep = '';
+  function buscaCep() {
+    var cep = soDig($('#cep').value), st = $('#cepStatus');
+    if (cep.length !== 8) { if (!cep.length) st.textContent = 'Preenche o endereço sozinho'; return; }
+    if (cep === ultimoCep) return; ultimoCep = cep;
+    st.textContent = 'Buscando endereço…';
+    fetch('https://viacep.com.br/ws/' + cep + '/json/')
+      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function (e) {
+        if (e.erro) { st.textContent = 'CEP não encontrado — preencha o endereço à mão.'; return; }
+        var F = form.elements;
+        if (e.logradouro) F.logradouro.value = e.logradouro;
+        if (e.bairro) F.bairro.value = e.bairro;
+        if (e.localidade) F.cidade.value = e.localidade;
+        if (e.uf) F.uf.value = e.uf;
+        ['logradouro', 'cidade'].forEach(function (n) { if (F[n].value.trim()) F[n].classList.remove('invalid'); });
+        st.textContent = 'Endereço preenchido. Confira e coloque o número.';
+        F.numeroEnd.focus(); agenda();
+      })
+      .catch(function () { ultimoCep = ''; st.textContent = 'Sem conexão com a busca de CEP — preencha à mão.'; });
+  }
+  $('#cep').addEventListener('input', buscaCep);
+
   // ---------- tipo de serviço "outro" ----------
   $('#tipoServico').addEventListener('change', function () { $('#outroWrap').hidden = this.value !== '__outro'; });
 
@@ -98,7 +122,8 @@
     return true;
   }
   function hojeISO() { var t = new Date(); t.setMinutes(t.getMinutes() - t.getTimezoneOffset()); return t.toISOString().slice(0, 10); }
-  function novoNumero() { var t = new Date(), z = function (n) { return String(n).padStart(2, '0'); }; return 'CHZ-' + t.getFullYear() + z(t.getMonth() + 1) + z(t.getDate()) + '-' + z(t.getHours()) + z(t.getMinutes()); }
+  // CHZ + dia, mês e ano do dia em que o contrato é feito. Ex.: CHZ-23112026
+  function novoNumero() { var t = new Date(), z = function (n) { return String(n).padStart(2, '0'); }; return 'CHZ-' + z(t.getDate()) + z(t.getMonth() + 1) + t.getFullYear(); }
   function padrao() {
     form.reset(); $('#escopo').innerHTML = '';
     window.ESCOPO_PADRAO.forEach(addAmb);
@@ -156,7 +181,7 @@
 
   // ---------- início ----------
   if (!restaurar()) padrao();
-  if (!$('#numero').value) $('#numero').value = novoNumero();
+  $('#numero').value = novoNumero();   // sempre o número do dia de hoje
   atualizaValores();
   carregar().then(gerarPrevia).catch(function (e) { status.textContent = 'erro ao carregar fontes: ' + e.message; });
 })();

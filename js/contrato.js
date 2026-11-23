@@ -56,13 +56,13 @@
   function tabelaDados(linhas) {
     return {
       table: { widths: [130, '*'], body: linhas.map(function (l) {
-        return [{ text: l[0].toUpperCase(), style: 'rotulo', fillColor: SOFT, margin: [8, 6, 8, 6] }, { text: l[1], style: 'corpo', margin: [8, 6, 8, 6] }];
+        return [{ text: l[0].toUpperCase(), style: 'rotulo', fillColor: SOFT, margin: [8, 6, 8, 6] }, { text: l[1], style: 'corpo', alignment: 'left', margin: [8, 6, 8, 6] }];
       }) },
       layout: { hLineColor: function () { return LINE; }, vLineColor: function () { return LINE; }, hLineWidth: function () { return 0.7; }, vLineWidth: function () { return 0.7; } }
     };
   }
   function parte(rotulo, linhas) {
-    return { stack: [{ text: rotulo, style: 'rotuloParte' }].concat(linhas.map(function (l) { return { text: l, style: 'corpo', margin: [0, 1, 0, 0] }; })), margin: [0, 0, 0, 0] };
+    return { stack: [{ text: rotulo, style: 'rotuloParte' }].concat(linhas.filter(Boolean).map(function (l) { return { text: l, style: 'corpo', alignment: 'left', margin: [0, 1, 0, 0] }; })), margin: [0, 0, 0, 0] };
   }
 
   window.montarContrato = function (d, logoDataUrl) {
@@ -82,7 +82,7 @@
         { width: '*', stack: [
           { text: 'CONTRATO Nº', style: 'rotulo', alignment: 'right' },
           { text: ou(d.numero, '—'), style: 'numero', alignment: 'right' },
-          { text: C.telefone + (C.site ? '  •  ' + C.site : ''), style: 'pequeno', alignment: 'right', margin: [0, 6, 0, 0] }
+          { text: 'WhatsApp ' + C.telefone, style: 'pequeno', alignment: 'right', margin: [0, 6, 0, 0] }
         ] }
       ]
     });
@@ -97,12 +97,15 @@
         'Nome fantasia: ' + C.nomeFantasia,
         'CNPJ: ' + C.cnpj,
         C.endereco,
-        'Telefone/WhatsApp: ' + C.telefone + (C.email ? '  •  ' + C.email : '')
+        'Telefone/WhatsApp: ' + C.telefone,
+        C.email ? 'E-mail: ' + C.email : null
       ]),
       parte('CONTRATANTE', [
         { text: ou(cli.nome), bold: true },
-        (cli.doc && cli.doc.replace(/\D/g, '').length > 11 ? 'CNPJ: ' : 'CPF/CNPJ: ') + ou(cli.doc),
-        'Telefone: ' + ou(cli.telefone) + (cli.email ? '  •  ' + cli.email : '')
+        (cli.doc && cli.doc.replace(/\D/g, '').length > 11 ? 'CNPJ: ' : (cli.doc && cli.doc.replace(/\D/g, '').length === 11 ? 'CPF: ' : 'CPF/CNPJ: ')) + ou(cli.doc),
+        'Telefone: ' + ou(cli.telefone),
+        // e-mail não tem espaço para quebrar linha: diminui a letra se for muito comprido
+        cli.email ? { text: 'E-mail: ' + cli.email, fontSize: Math.min(9.5, 228 / (('E-mail: ' + cli.email).length * 0.5)) } : null
       ])
     ], columnGap: 24, margin: [0, 0, 0, 14] });
     content.push(p('As partes acima identificadas têm entre si justo e contratado o presente Contrato de Prestação de Serviços, que se regerá pelas cláusulas e condições a seguir.'));
@@ -130,7 +133,7 @@
       content.push(p('Estão incluídos neste contrato os seguintes serviços:'));
       escopo.forEach(function (a) {
         content.push({ text: a.ambiente, style: 'ambiente', margin: [0, 4, 0, 2] });
-        content.push({ ul: a.itens, style: 'corpo', margin: [8, 0, 0, 4], markerColor: INK });
+        content.push({ ul: a.itens, style: 'corpo', alignment: 'left', margin: [8, 0, 0, 4], markerColor: INK });
       });
     } else content.push(p('______________________________________________________________________'));
     content.push(p('Parágrafo único. Serviços não descritos acima não estão incluídos neste contrato. A CONTRATADA utilizará produtos e técnicas adequados a cada tipo de superfície e acabamento.', { margin: [0, 6, 0, 6] }));
@@ -195,7 +198,7 @@
     function assinatura(nome, papel, doc) {
       return { stack: [
         { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 220, y2: 0, lineWidth: 0.8, lineColor: INK }], margin: [0, 40, 0, 4] },
-        { text: nome, style: 'corpo', bold: true },
+        { text: nome, style: 'corpo', alignment: 'left', bold: true },
         { text: papel + (doc ? '  •  ' + doc : ''), style: 'pequeno' }
       ] };
     }
