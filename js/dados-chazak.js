@@ -7,7 +7,7 @@ window.CHAZAK = {
   nomeFantasia: 'Chazak Limpeza Pós-Obra',
   razaoSocial:  '[RAZÃO SOCIAL]',
   cnpj:         '[CNPJ]',
-  endereco:     '[ENDEREÇO COMPLETO DA EMPRESA]',
+  endereco:     'Rua Arcângelo Bianchini, 457 — Ivoturucaia — Jundiaí/SP',
   cidadeUF:     'Jundiaí/SP',
   responsavel:  '[NOME DO RESPONSÁVEL]',
   telefone:     '(11) 93085-3352',
