@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Contratos Chazak</title>
+<link rel="icon" href="img/logo-chazak-preto.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--lime:#B5FB13;--ink:#0D0D0D;--graf:#3A3A3A;--soft:#F3F3F1;--line:#DEDED9;--muted:#555;--err:#C0392B}
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;color:var(--ink);background:var(--soft);font-size:15px;line-height:1.5}
+header{background:var(--ink);color:#fff}
+.top{max-width:1500px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.top img{height:44px;width:auto;display:block}
+.top h1{margin:0;font-size:18px;font-weight:700;flex:1;min-width:180px}
+.top h1 span{color:var(--lime)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:0;font:inherit;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+main{max-width:1500px;margin:0 auto;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:1000px){main{grid-template-columns:1fr}.preview{position:static!important;height:80vh!important}}
+form{display:flex;flex-direction:column;gap:16px}
+fieldset{margin:0;border:0;background:#fff;border-radius:18px;padding:20px 20px 22px}
+legend{float:left;width:100%;padding:0;margin:0 0 14px;font-weight:800;font-size:16px;display:flex;align-items:center;gap:10px}
+legend::before{content:"";width:6px;height:20px;background:var(--lime);border-radius:2px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 14px;clear:both}
+.c2{grid-column:span 2}.c3{grid-column:span 3}.c4{grid-column:span 4}.c6{grid-column:span 6}.c1{grid-column:span 1}
+@media (max-width:640px){.grid{grid-template-columns:1fr 1fr}.c1,.c2,.c3,.c4,.c6{grid-column:span 2}}
+label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600}
+label .req{color:var(--err)}
+input,select,textarea{font:inherit;font-size:15px;font-weight:400;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%}
+textarea{min-height:90px;resize:vertical}
+.invalid{border-color:var(--err);background:#FFF6F5}
+.hint{font-size:12px;color:var(--muted);font-weight:400}
+.checks{display:flex;flex-wrap:wrap;gap:8px;clear:both}
+.chip{flex-direction:row;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-weight:500;cursor:pointer;min-height:44px}
+.chip input{width:18px;height:18px;min-height:0;accent-color:var(--ink)}
+.amb{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;clear:both}
+.amb+.amb{margin-top:10px}
+.amb-head{display:flex;align-items:center;gap:10px}
+.amb-head input[type=checkbox]{width:20px;height:20px;min-height:0;accent-color:var(--ink);flex:none}
+.amb-head input[type=text]{font-weight:700}
+.amb.off textarea{display:none}
+.amb.off .amb-head input[type=text]{color:var(--muted)}
+.icon-btn{flex:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;clear:both}
+.split div{background:var(--soft);border-radius:12px;padding:10px 14px}
+.split strong{display:block;font-size:18px}
+.split span{font-size:12px;color:var(--muted)}
+.extenso{clear:both;margin-top:8px;font-size:13px;color:var(--muted)}
+.aviso{background:#FFF8E1;border:1px solid #F1D27A;color:#5C4500;border-radius:14px;padding:12px 16px;font-size:14px}
+.aviso code{background:rgba(0,0,0,.06);padding:1px 5px;border-radius:5px}
+.preview{position:sticky;top:20px;height:calc(100vh - 40px);background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.preview-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px}
+.preview iframe{flex:1;border:0;width:100%;background:#525659}
+.status{font-weight:400;color:var(--muted);font-size:12px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <img src="img/logo-chazak.svg" alt="Chazak Limpeza Pós Obra">
+    <h1>Gerador de <span>contratos</span></h1>
+    <button type="button" class="btn btn-ghost" id="btn-novo">Novo contrato</button>
+    <button type="button" class="btn btn-lime" id="btn-baixar">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"></path></svg>
+      Baixar PDF
+    </button>
+  </div>
+</header>
+
+<main>
+  <form id="f" novalidate autocomplete="off">
+    <div class="aviso" id="aviso-dados" hidden></div>
+
+    <fieldset>
+      <legend>Contrato</legend>
+      <div class="grid">
+        <label class="c3">Número do contrato<input name="numero" id="numero"></label>
+        <label class="c3">Data da assinatura<input type="date" name="assData" id="assData"></label>
+        <label class="c3">Cidade da assinatura<input name="assCidade" id="assCidade"></label>
+        <label class="c3 chip" style="align-self:end"><input type="checkbox" name="testemunhas"> Incluir 2 testemunhas</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Cliente (contratante)</legend>
+      <div class="grid">
+        <label class="c4"><span>Nome completo / razão social <span class="req">*</span></span><input name="nome" data-req></label>
+        <label class="c2"><span>CPF ou CNPJ <span class="req">*</span></span><input name="doc" inputmode="numeric" data-req data-mask="doc"></label>
+        <label class="c3"><span>Telefone / WhatsApp <span class="req">*</span></span><input name="telefone" inputmode="tel" data-req data-mask="tel"></label>
+        <label class="c3">E-mail<input name="email" type="email"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Local do serviço</legend>
+      <div class="grid">
+        <label class="c2">CEP<input name="cep" inputmode="numeric" data-mask="cep"></label>
+        <label class="c4"><span>Rua / avenida <span class="req">*</span></span><input name="logradouro" data-req></label>
+        <label class="c1">Número<input name="numeroEnd"></label>
+        <label class="c2">Complemento<input name="complemento" placeholder="apto, bloco..."></label>
+        <label class="c3">Bairro<input name="bairro"></label>
+        <label class="c4"><span>Cidade <span class="req">*</span></span><input name="cidade" data-req></label>
+        <label class="c2">UF<input name="uf" maxlength="2" value="SP"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Serviço</legend>
+      <div class="grid">
+        <label class="c3"><span>Tipo de serviço <span class="req">*</span></span>
+          <select name="tipoServico" id="tipoServico" data-req>
+            <option>Limpeza pós-obra completa (grossa + fina)</option>
+            <option>Limpeza grossa pós-obra</option>
+            <option>Limpeza fina pós-obra</option>
+            <option>Limpeza pesada</option>
+            <option value="__outro">Outro (descrever)</option>
+          </select>
+        </label>
+        <label class="c3" id="outroWrap" hidden>Qual serviço?<input name="tipoOutro"></label>
+        <label class="c3"><span>Tipo de imóvel <span class="req">*</span></span>
+          <select name="tipoImovel" data-req>
+            <option>Residencial (casa)</option>
+            <option>Residencial (apartamento)</option>
+            <option>Condomínio (áreas comuns)</option>
+            <option>Prédio</option>
+            <option>Comercial</option>
+            <option>Galpão</option>
+          </select>
+        </label>
+        <label class="c2"><span>Área (m²) <span class="req">*</span></span><input name="area" inputmode="decimal" data-req></label>
+        <label class="c2"><span>Início previsto <span class="req">*</span></span><input type="date" name="inicio" data-req></label>
+        <label class="c1"><span>Prazo (dias) <span class="req">*</span></span><input name="prazoDias" inputmode="numeric" data-req></label>
+        <label class="c1">Equipe<input name="equipe" inputmode="numeric" placeholder="pessoas"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Escopo por ambiente</legend>
+      <p class="hint" style="clear:both;margin:-6px 0 12px">Marque os ambientes incluídos. Um item por linha — dá para editar, apagar ou acrescentar.</p>
+      <div id="escopo"></div>
+      <button type="button" class="btn btn-dark" id="btn-amb" style="margin-top:12px">+ Adicionar ambiente</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Valor e pagamento</legend>
+      <div class="grid">
+        <label class="c3"><span>Valor total (R$) <span class="req">*</span></span><input name="valor" id="valor" inputmode="decimal" placeholder="1.800,00" data-req></label>
+      </div>
+      <div class="split" aria-live="polite">
+        <div><span>50% de adiantamento — na assinatura</span><strong id="v1">R$ 0,00</strong></div>
+        <div><span>50% na finalização da obra</span><strong id="v2">R$ 0,00</strong></div>
+      </div>
+      <p class="extenso" id="vExt"></p>
+      <p class="hint" style="clear:both;margin:14px 0 8px;font-weight:600;color:var(--ink)">Formas de pagamento aceitas</p>
+      <div class="checks" id="formas">
+        <label class="chip"><input type="checkbox" value="Pix" checked> Pix</label>
+        <label class="chip"><input type="checkbox" value="transferência bancária"> Transferência</label>
+        <label class="chip"><input type="checkbox" value="cartão de débito" checked> Cartão de débito</label>
+        <label class="chip"><input type="checkbox" value="cartão de crédito"> Cartão de crédito</label>
+        <label class="chip"><input type="checkbox" value="dinheiro"> Dinheiro</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Condições específicas (opcional)</legend>
+      <label style="clear:both">Entram no contrato como uma cláusula própria. Um parágrafo por linha.
+        <textarea name="observacoes" placeholder="Ex.: A limpeza será feita em duas etapas, com intervalo de 1 dia."></textarea>
+      </label>
+    </fieldset>
+
+    <div class="actions">
+      <button type="button" class="btn btn-lime" id="btn-baixar2">Baixar PDF</button>
+      <button type="button" class="btn btn-dark" id="btn-prev">Atualizar prévia</button>
+    </div>
+  </form>
+
+  <section class="preview" aria-label="Prévia do contrato">
+    <div class="preview-bar">Prévia do PDF <span class="status" id="status">carregando…</span></div>
+    <iframe id="frame" title="Prévia do contrato em PDF"></iframe>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+<script src="js/dados-chazak.js"></script>
+<script src="js/contrato.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
